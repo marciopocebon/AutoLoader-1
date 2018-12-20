@@ -59,15 +59,15 @@ class autoloader
     private function include_matching_files($php_files_json_address, $class_file_name)
     {
         //prevent opening file each time with this global variable
-        global $files;
+        global $php_files_array;
         $inc_is_done = false;
 
-        if ($files == null) {
-            $files = json_decode(file_get_contents($php_files_json_address), false);
+        if ($php_files_array == null) {
+            $php_files_array = json_decode(file_get_contents($php_files_json_address), false);
         }
 
         /**Include matching files here.*/
-        foreach ($files as $path) {
+        foreach ($php_files_array as $path) {
             if (stripos($path, $class_file_name) !== false) {
                 require_once $path;
                 $inc_is_done = true;
