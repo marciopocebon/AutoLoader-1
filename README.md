@@ -1,5 +1,5 @@
 # AutoLoader
-PHP standard autoloader system . 
+PHP PSR-4 standard file scanner and autoloader system .
 
 
 This class allows you to instanciate objects and classes without include or import it at the top of
