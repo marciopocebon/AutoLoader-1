@@ -58,10 +58,12 @@ class autoloader
      */
     private function include_matching_files($php_files_json_address, $class_file_name)
     {
-        static $files;
+        //prevent opening file each time with this global variable
+        global $files;
         $inc_is_done = false;
 
         if ($files == null) {
+            echo "FILES LOADED";
             $files = json_decode(file_get_contents($php_files_json_address), false);
         }
 
@@ -84,9 +86,10 @@ class autoloader
      */
     protected function request_system_files($dir_level, $class_name, $try_for_new_files = false)
     {
+        //Applying PSR-4 standard for including system files :
         $php_files_json = 'autoloaderfiles.json';
         $php_files_json_address = $dir_level . DIRECTORY_SEPARATOR . $php_files_json;
-        $class_file_name = $class_name . '.php';
+        $class_file_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
         $files_refresh_time = 30;
 
         /**Include required php files.*/
