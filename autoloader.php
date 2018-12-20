@@ -63,7 +63,6 @@ class autoloader
         $inc_is_done = false;
 
         if ($files == null) {
-            echo "FILES LOADED";
             $files = json_decode(file_get_contents($php_files_json_address), false);
         }
 
