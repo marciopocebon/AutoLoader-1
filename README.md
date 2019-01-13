@@ -106,7 +106,8 @@ statements as long as the class file is found in the same directory level *`__DI
 another directory, you have registered it.
 
   for example you need to include files before call these calsses or functions : 
-  
+
+```php
     <?php
     
           include 'rootDummy.php';
@@ -135,9 +136,10 @@ another directory, you have registered it.
           echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
           new rootDummy();
           new rootDummy2();
- 
+ ```
  but you can optimize and handle it without include un used files by using the auto loader like this :
 
+```php
       <?php
       
             include 'autoloader.php';
@@ -160,7 +162,7 @@ another directory, you have registered it.
             new rootDummy();
             new rootDummy2(); 
       
-
+```
 
 ## Useful links
 
