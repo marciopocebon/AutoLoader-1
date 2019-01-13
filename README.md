@@ -62,7 +62,7 @@ Suggestions and pull requests are always welcome.
 #### USAGE
 
 An example implementation can be found in the sample directory.  The
-*autoload.php* file can be placed the topmost directory of your project,
+*autoloader.php* file can be placed the topmost directory of your project,
 For best performance, it's best to keep all of your class files in a separate directory
 away from the rest of your project.  This helps to limit unnecessary overhead
 caused by traversing the file system.
@@ -88,15 +88,17 @@ Because this will open and read the files of each level of the directories.
 ### $autoload->register() Params:
 
 1 - String dir_level : As i said indicates your directory level 
+
 2 - Bool debug mode : If you're developing, put this function input *`true`*
 this will cause the files to be scanned every 10 seconds
+
 *`***Remember to change it to false in production time***`*
+
 3 - String file_extension : By default, the autoloader assumes that you are using the *`classname.php`* file
 naming convention.  In other words, the class *`myobject`* would be found in a
 file named *`myobject.php`*.  Support for other naming conventions is available.
 If your naming convention uses file names such as *`myobject.class`* or *`myobject.class.php`*, you can change the
 default file extension to *`.class.php`*! .
-
 
 
 Classes can then be loading dynamically without any additional include
@@ -106,57 +108,57 @@ another directory, you have registered it.
   for example you need to include files before call these calsses or functions : 
   
     <?php
-    include 'rootDummy.php';
-    include 'cars/benz.php';
-    include 'cars/bmw.php';
-    include 'cars/lamborghini.php';
-    include 'german_cars/bmw.php';
-    include 'german_cars/benz.php';
-    include 'animals/cat.php';
-    include 'animals/dog.php';
-    include 'animals/bird.php';
-    include 'animals/snake.php';
-    include 'dummy/rootDummy2.php';
-    echo '<br><b>ANIMALS NAMESPACE</b><br><br>';
-    new \animals\bird();
-    new \animals\cat();
-    new \animals\snake();
-    new \animals\dog();
-    echo '<br><b>CARS NAMESPACE</b><br><br>';
-    new \cars\bmw();
-    new \cars\benz();
-    new \cars\lamborghini();
-    echo '<br><b>GERMANY CARS NAMESPACE</b><br><br>';
-    new \german_cars\benz();
-    new \german_cars\bmw();
-    echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
-    new rootDummy();
-    new rootDummy2();
+    
+          include 'rootDummy.php';
+          include 'cars/benz.php';
+          include 'cars/bmw.php';
+          include 'cars/lamborghini.php';
+          include 'german_cars/bmw.php';
+          include 'german_cars/benz.php';
+          include 'animals/cat.php';
+          include 'animals/dog.php';
+          include 'animals/bird.php';
+          include 'animals/snake.php';
+          include 'dummy/rootDummy2.php';
+          echo '<br><b>ANIMALS NAMESPACE</b><br><br>';
+          new \animals\bird();
+          new \animals\cat();
+          new \animals\snake();
+          new \animals\dog();
+          echo '<br><b>CARS NAMESPACE</b><br><br>';
+          new \cars\bmw();
+          new \cars\benz();
+          new \cars\lamborghini();
+          echo '<br><b>GERMANY CARS NAMESPACE</b><br><br>';
+          new \german_cars\benz();
+          new \german_cars\bmw();
+          echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
+          new rootDummy();
+          new rootDummy2();
  
  but you can optimize and handle it without include un used files by using the auto loader like this :
 
       <?php
-      include 'autoloader.php';
-      $autoload = autoloader::instance();
-      $autoload->register(__DIR__);// directory level
+      
+            include 'autoloader.php';
+            $autoload = autoloader::instance();
+            $autoload->register(__DIR__);// directory level
 
-      echo '<br><b>ANIMALS NAMESPACE</b><br><br>';
-      new \animals\bird();
-      new \animals\cat();
-      new \animals\snake();
-      new \animals\dog();
-      echo '<br><b>CARS NAMESPACE</b><br><br>';
-      new \cars\bmw();
-      new \cars\benz();
-      new \cars\lamborghini();
-      echo '<br><b>GERMANY CARS NAMESPACE</b><br><br>';
-      new \german_cars\benz();
-      new \german_cars\bmw();
-      echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
-      new rootDummy();
-      new rootDummy2(); 
-      
-      
+            echo '<br><b>ANIMALS NAMESPACE</b><br><br>';
+            new \animals\bird();
+            new \animals\cat();
+            new \animals\snake();
+            new \animals\dog();
+            echo '<br><b>CARS NAMESPACE</b><br><br>';
+            new \cars\bmw();
+            new \cars\benz();
+            new \cars\lamborghini();
+            echo '<br><b>GERMANY CARS NAMESPACE</b><br><br>';
+            new \german_cars\benz();
+            new \german_cars\bmw();
+            echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
+            new rootDummy();
+            new rootDummy2(); 
       
 
 
