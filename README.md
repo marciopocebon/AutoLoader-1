@@ -176,7 +176,7 @@ another directory, you have registered it.
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Rob Dunham
+Copyright (c) 2018 Ali Hosseini
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
