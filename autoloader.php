@@ -55,7 +55,7 @@ class autoloader
 
             $path = strval($iterator->current());
 
-            if (pathinfo($path, PATHINFO_EXTENSION) == $file_extension) {
+            if (stripos(pathinfo($path, PATHINFO_BASENAME), $file_extension)) {
                 $filePaths[] = $path;
             }
             //while have next maybe throw an exception.
