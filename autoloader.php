@@ -39,10 +39,6 @@ class autoloader
 
         //save update time in array
         $filePaths = array(mktime());
-        //strip first dot from file extension
-        if (substr($file_extension, 0, 1) == ".") {
-            $file_extension = substr($file_extension, 1);
-        }
 
         /**Get all files and directories using recursive iterator.*/
         $iterator = new RecursiveIteratorIterator(
@@ -83,13 +79,13 @@ class autoloader
     {
         $inc_is_done = false;
 
-        //prevent opening file each time with making this variable global.
+        //prevent opening file each time with making these variables global.
         global $php_files_array;
         global $php_files_last_directory;
 
         if ($php_files_array == null || $php_files_json_address != $php_files_last_directory) {
-            $php_files_array = json_decode(file_get_contents($php_files_json_address), false);
             $php_files_last_directory = $php_files_json_address;
+            $php_files_array = json_decode(file_get_contents($php_files_json_address), false);
         }
 
         /**Include matching files here.*/
@@ -119,17 +115,27 @@ class autoloader
         $files_refresh_time = 10;
 
         /**Include required php files.*/
-        if (is_file($php_files_json_directory)) {
+        if ( is_file( $php_files_json_directory ) ) {
 
-            $last_update = json_decode(file_get_contents($php_files_json_directory), false)[0];
 
-            if ((mktime() - intval($last_update)) < $files_refresh_time || !$try_for_new_files) {
-                return $this->include_matching_files($php_files_json_directory, $class_file_name);
+            if ( ! $try_for_new_files ) {
+
+                return $this->include_matching_files( $php_files_json_directory, $class_file_name );
+
+            } else {
+
+                //Only in developing mode loader checks for @param $files_refresh_time seconds to renew files or not.
+                $last_update = json_decode( file_get_contents( $php_files_json_directory ), false )[0];
+                if ( ( mktime() - intval( $last_update ) ) < $files_refresh_time ) {
+                    return $this->include_matching_files( $php_files_json_directory, $class_file_name );
+                }
+
             }
-
         }
-        $this->export_php_files($dir_level, $php_files_json, $file_extension);
-        return $this->include_matching_files($php_files_json_directory, $class_file_name);
+
+        $this->export_php_files( $dir_level, $php_files_json, $file_extension );
+
+        return $this->include_matching_files( $php_files_json_directory, $class_file_name );
 
     }
 
@@ -192,7 +198,7 @@ class spl_registrar extends autoloader
 
     public function load($className)
     {
-        self::request_system_files(
+        $this->request_system_files(
             $this->directoryLevel,
             $className,
             $this->debug,
