@@ -1,5 +1,6 @@
 <?php
-
+//define default json file name who contains all the PHP files inside it.
+define('AUTOLOADER_PHP_FILES_JSON', 'autoloaderfiles.json');
 
 class autoloader
 {
@@ -31,10 +32,10 @@ class autoloader
 
     /**
      * @param $dir_level : directory level is for file searching
-     * @param $php_files_json_name : name of the file who all the PHP files will be stored inside it
+     * @param $php_files_json_directory : the json file who contains all the PHP files inside it
      * @param $file_extension : our specific extension for files Default is .php
      */
-    private function export_php_files($dir_level, $php_files_json_name, $file_extension)
+    private function export_php_files($dir_level, $php_files_json_directory, $file_extension)
     {
 
         //save update time in array
@@ -65,17 +66,17 @@ class autoloader
 
 
         /**Encode and save php files dir in a local json file */
-        $fileOpen = fopen($dir_level . DIRECTORY_SEPARATOR . $php_files_json_name, 'w');
+        $fileOpen = fopen($php_files_json_directory, 'w');
         fwrite($fileOpen, json_encode($filePaths));
         fclose($fileOpen);
     }
 
     /**
-     * @param $php_files_json_address : json file contains all the PHP files inside it
+     * @param $php_files_json_directory : the json file who contains all the PHP files inside it
      * @param $class_file_name : name of the class that was taken from @spl_autoload_register plus .php extension
      * @return bool Succeeding end of work
      */
-    private function include_matching_files($php_files_json_address, $class_file_name)
+    private function include_matching_files($php_files_json_directory, $class_file_name)
     {
         $inc_is_done = false;
 
@@ -83,9 +84,9 @@ class autoloader
         global $php_files_array;
         global $php_files_last_directory;
 
-        if ($php_files_array == null || $php_files_json_address != $php_files_last_directory) {
-            $php_files_last_directory = $php_files_json_address;
-            $php_files_array = json_decode(file_get_contents($php_files_json_address), false);
+        if ($php_files_array == null || $php_files_json_directory != $php_files_last_directory) {
+            $php_files_last_directory = $php_files_json_directory;
+            $php_files_array = json_decode(file_get_contents($php_files_json_directory), false);
         }
 
         /**Include matching files here.*/
@@ -109,33 +110,32 @@ class autoloader
     protected function request_system_files($dir_level, $class_name, $try_for_new_files, $file_extension)
     {
         //Applying PSR-4 standard for including system files :
-        $php_files_json = 'autoloaderfiles.json';
-        $php_files_json_directory = $dir_level . DIRECTORY_SEPARATOR . $php_files_json;
+        $php_files_json_directory = $dir_level . DIRECTORY_SEPARATOR . AUTOLOADER_PHP_FILES_JSON;
         $class_file_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . $file_extension;
         $files_refresh_time = 10;
 
         /**Include required php files.*/
-        if ( is_file( $php_files_json_directory ) ) {
+        if (is_file($php_files_json_directory)) {
 
 
-            if ( ! $try_for_new_files ) {
+            if (!$try_for_new_files) {
 
-                return $this->include_matching_files( $php_files_json_directory, $class_file_name );
+                return $this->include_matching_files($php_files_json_directory, $class_file_name);
 
             } else {
 
                 //Only in developing mode loader checks for @param $files_refresh_time seconds to renew files or not.
-                $last_update = json_decode( file_get_contents( $php_files_json_directory ), false )[0];
-                if ( ( mktime() - intval( $last_update ) ) < $files_refresh_time ) {
-                    return $this->include_matching_files( $php_files_json_directory, $class_file_name );
+                $last_update = json_decode(file_get_contents($php_files_json_directory), false)[0];
+                if ((mktime() - intval($last_update)) < $files_refresh_time) {
+                    return $this->include_matching_files($php_files_json_directory, $class_file_name);
                 }
 
             }
         }
 
-        $this->export_php_files( $dir_level, $php_files_json, $file_extension );
+        $this->export_php_files($dir_level,$php_files_json_directory, $file_extension);
 
-        return $this->include_matching_files( $php_files_json_directory, $class_file_name );
+        return $this->include_matching_files($php_files_json_directory, $class_file_name);
 
     }
 
@@ -198,7 +198,7 @@ class spl_registrar extends autoloader
 
     public function load($className)
     {
-        $this->request_system_files(
+        return $this->request_system_files(
             $this->directoryLevel,
             $className,
             $this->debug,
