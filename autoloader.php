@@ -53,7 +53,7 @@ class autoloader
             $path = strval($iterator->current());
 
             if (stripos(pathinfo($path, PATHINFO_BASENAME), $file_extension)) {
-                $filePaths[] = $path;
+                $filePaths[] = str_replace($dir_level, '', $path);
             }
             //while have next maybe throw an exception.
             try {
@@ -72,11 +72,12 @@ class autoloader
     }
 
     /**
+     * @param $dir_level
      * @param $php_files_json_directory : the json file who contains all the PHP files inside it
      * @param $class_file_name : name of the class that was taken from @spl_autoload_register plus .php extension
      * @return bool Succeeding end of work
      */
-    private function include_matching_files($php_files_json_directory, $class_file_name)
+    private function include_matching_files($dir_level, $php_files_json_directory, $class_file_name)
     {
         $inc_is_done = false;
 
@@ -92,7 +93,7 @@ class autoloader
         /**Include matching files here.*/
         foreach ($php_files_array as $path) {
             if (stripos($path, $class_file_name) !== false) {
-                require_once $path;
+                require_once $dir_level . $path;
                 $inc_is_done = true;
             }
         }
@@ -120,22 +121,22 @@ class autoloader
 
             if (!$try_for_new_files) {
 
-                return $this->include_matching_files($php_files_json_directory, $class_file_name);
+                return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
 
             } else {
 
                 //Only in developing mode loader checks for @param $files_refresh_time seconds to renew files or not.
                 $last_update = json_decode(file_get_contents($php_files_json_directory), false)[0];
                 if ((mktime() - intval($last_update)) < $files_refresh_time) {
-                    return $this->include_matching_files($php_files_json_directory, $class_file_name);
+                    return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
                 }
 
             }
         }
 
-        $this->export_php_files($dir_level,$php_files_json_directory, $file_extension);
+        $this->export_php_files($dir_level, $php_files_json_directory, $file_extension);
 
-        return $this->include_matching_files($php_files_json_directory, $class_file_name);
+        return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
 
     }
 
