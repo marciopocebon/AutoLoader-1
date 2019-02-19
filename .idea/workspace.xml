@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="" />
+    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/autoloader.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +36,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/autoloader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="67" selection-end-line="219" />
+            <state relative-caret-position="-36">
+              <caret line="179" column="1" selection-start-line="179" selection-start-column="1" selection-end-line="179" selection-end-column="1" />
               <folding>
-                <element signature="n#instance#0;n#autoloader#0;n#!!top" />
+                <element signature="n#autoloader#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -91,7 +94,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -103,6 +105,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -162,6 +165,8 @@
       <workItem from="1548865818667" duration="854000" />
       <workItem from="1549308504309" duration="655000" />
       <workItem from="1549355819794" duration="432000" />
+      <workItem from="1549356269516" duration="73000" />
+      <workItem from="1550564300576" duration="248000" />
     </task>
     <task id="LOCAL-00001" summary="Unix psr-4 and directory systems fixed.">
       <created>1545336224501</created>
@@ -233,16 +238,23 @@
       <option name="project" value="LOCAL" />
       <updated>1549356234406</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="file directory saved relatively.">
+      <created>1549356331321</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1549356331322</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27409000" />
+    <option name="totallyTimeSpent" value="27730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28863636" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2977273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -393,10 +405,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autoloader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="67" selection-end-line="219" />
+        <state relative-caret-position="-36">
+          <caret line="179" column="1" selection-start-line="179" selection-start-column="1" selection-end-line="179" selection-end-column="1" />
           <folding>
-            <element signature="n#instance#0;n#autoloader#0;n#!!top" />
+            <element signature="n#autoloader#0;n#!!top" />
           </folding>
         </state>
       </provider>

@@ -1,14 +1,15 @@
 <?php
 //define default json file name who contains all the PHP files inside it.
-define( 'AUTOLOADER_PHP_FILES_JSON', 'autoloader.json' );
+define('AUTOLOADER_PHP_FILES_JSON', 'autoloader.json');
 
-class autoloader {
+class autoloader
+{
 
-    public static function instance() {
+    public static function instance()
+    {
         static $instance = false;
-        if ( $instance === false ) {
-            // Late static binding
-            $instance = new static();
+        if ($instance === false) {
+            $instance = new self();
         }
 
         return $instance;
@@ -22,9 +23,10 @@ class autoloader {
      * @param bool $debugMode will be try for new php files added in developing time.
      * @param string $fileExtension specific file Extension
      */
-    public function register( $directoryLevel, $debugMode = false, $fileExtension = ".php" ) {
-        if ( $directoryLevel != null ) {
-            new spl_registrar( $this, $directoryLevel, $debugMode, $fileExtension );
+    public function register($directoryLevel, $debugMode = false, $fileExtension = ".php")
+    {
+        if ($directoryLevel != null) {
+            new spl_registrar($this, $directoryLevel, $debugMode, $fileExtension);
         }
     }
 
@@ -33,39 +35,40 @@ class autoloader {
      * @param $php_files_json_directory : the json file who contains all the PHP files inside it
      * @param $file_extension : our specific extension for files Default is .php
      */
-    private function export_php_files( $dir_level, $php_files_json_directory, $file_extension ) {
+    private function export_php_files($dir_level, $php_files_json_directory, $file_extension)
+    {
 
         //save update time in array
-        $filePaths = array( mktime() );
+        $filePaths = array(mktime());
 
         /**Get all files and directories using recursive iterator.*/
         $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator( $dir_level, RecursiveDirectoryIterator::SKIP_DOTS ),
+            new RecursiveDirectoryIterator($dir_level, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         /**Add all of iterated files in array */
-        while ( $iterator->valid() ) {
+        while ($iterator->valid()) {
 
-            $path = strval( $iterator->current() );
+            $path = strval($iterator->current());
 
-            if ( stripos( pathinfo( $path, PATHINFO_BASENAME ), $file_extension ) ) {
-                $filePaths[] = str_replace( $dir_level, '', $path );
+            if (stripos(pathinfo($path, PATHINFO_BASENAME), $file_extension)) {
+                $filePaths[] = str_replace($dir_level, '', $path);
             }
             //while have next maybe throw an exception.
             try {
                 $iterator->next();
-            } catch ( Exception $ignored ) {
-                var_dump( $ignored );
+            } catch (Exception $ignored) {
+                var_dump($ignored);
                 break;
             }
         }
 
 
         /**Encode and save php files dir in a local json file */
-        $fileOpen = fopen( $php_files_json_directory, 'w' );
-        fwrite( $fileOpen, json_encode( $filePaths ) );
-        fclose( $fileOpen );
+        $fileOpen = fopen($php_files_json_directory, 'w');
+        fwrite($fileOpen, json_encode($filePaths));
+        fclose($fileOpen);
     }
 
     /**
@@ -75,21 +78,22 @@ class autoloader {
      *
      * @return bool Succeeding end of work
      */
-    private function include_matching_files( $dir_level, $php_files_json_directory, $class_file_name ) {
+    private function include_matching_files($dir_level, $php_files_json_directory, $class_file_name)
+    {
         $inc_is_done = false;
 
         //prevent opening file each time with making these variables global.
         global $php_files_array;
         global $php_files_last_directory;
 
-        if ( $php_files_array == null || $php_files_json_directory != $php_files_last_directory ) {
+        if ($php_files_array == null || $php_files_json_directory != $php_files_last_directory) {
             $php_files_last_directory = $php_files_json_directory;
-            $php_files_array          = json_decode( file_get_contents( $php_files_json_directory ), false );
+            $php_files_array = json_decode(file_get_contents($php_files_json_directory), false);
         }
 
         /**Include matching files here.*/
-        foreach ( $php_files_array as $path ) {
-            if ( stripos( $path, $class_file_name ) !== false ) {
+        foreach ($php_files_array as $path) {
+            if (stripos($path, $class_file_name) !== false) {
                 require_once $dir_level . $path;
                 $inc_is_done = true;
             }
@@ -107,59 +111,64 @@ class autoloader {
      *
      * @return bool : Succeeding end of work
      */
-    public function request_system_files( $dir_level, $class_name, $try_for_new_files, $file_extension ) {
+    public function request_system_files($dir_level, $class_name, $try_for_new_files, $file_extension)
+    {
         //Applying PSR-4 standard for including system files :
         $php_files_json_directory = $dir_level . DIRECTORY_SEPARATOR . AUTOLOADER_PHP_FILES_JSON;
-        $class_file_name          = str_replace( '\\', DIRECTORY_SEPARATOR, $class_name ) . $file_extension;
-        $files_refresh_time       = 10;
+        $class_file_name = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . $file_extension;
+        $files_refresh_time = 10;
 
         /**Include required php files.*/
-        if ( is_file( $php_files_json_directory ) ) {
+        if (is_file($php_files_json_directory)) {
 
 
-            if ( ! $try_for_new_files ) {
+            if (!$try_for_new_files) {
 
-                return $this->include_matching_files( $dir_level, $php_files_json_directory, $class_file_name );
+                return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
 
             } else {
 
                 //Only in developing mode loader checks for @param $files_refresh_time seconds to renew files or not.
-                $last_update = json_decode( file_get_contents( $php_files_json_directory ), false )[0];
-                if ( ( mktime() - intval( $last_update ) ) < $files_refresh_time ) {
-                    return $this->include_matching_files( $dir_level, $php_files_json_directory, $class_file_name );
+                $last_update = json_decode(file_get_contents($php_files_json_directory), false)[0];
+                if ((mktime() - intval($last_update)) < $files_refresh_time) {
+                    return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
                 }
 
             }
         }
 
-        $this->export_php_files( $dir_level, $php_files_json_directory, $file_extension );
+        $this->export_php_files($dir_level, $php_files_json_directory, $file_extension);
 
-        return $this->include_matching_files( $dir_level, $php_files_json_directory, $class_file_name );
+        return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
 
     }
 
     /**
      * Make constructor private, so nobody can call "new Class".
      */
-    private function __construct() {
+    private function __construct()
+    {
     }
 
     /**
      * Make clone magic method private, so nobody can clone instance.
      */
-    private function __clone() {
+    private function __clone()
+    {
     }
 
     /**
      * Make sleep magic method private, so nobody can serialize instance.
      */
-    private function __sleep() {
+    private function __sleep()
+    {
     }
 
     /**
      * Make wakeup magic method private, so nobody can unserialize instance.
      */
-    private function __wakeup() {
+    private function __wakeup()
+    {
     }
 
 }
@@ -167,8 +176,8 @@ class autoloader {
 /**
  * @spl_registrar this object is a registrar for spl_autoload_register
  */
-class spl_registrar {
-
+class spl_registrar
+{
     /**
      * @var autoloader
      */
@@ -186,24 +195,26 @@ class spl_registrar {
      */
     private $debug;
 
-    function __construct( $autoloader, $directoryLevel, $debugMode, $fileExtension ) {
-        $this->autoloader     = $autoloader;
-        $this->debug          = $debugMode;
+    function __construct($autoloader, $directoryLevel, $debugMode, $fileExtension)
+    {
+        $this->autoloader = $autoloader;
+        $this->debug = $debugMode;
         $this->directoryLevel = $directoryLevel;
         $this->file_extension = $fileExtension;
 
         try {
-            spl_autoload_register( "self::load", true, false );
-        } catch ( Exception $e ) {
-            var_dump( $e );
+            spl_autoload_register(array($this, 'load'), true, false);
+        } catch (Exception $e) {
+            var_dump($e);
             die;
         }
 
     }
 
-    protected function load( $className ) {
+    protected function load($className)
+    {
 
-        if ( is_null( $this->autoloader ) || is_null( $this->directoryLevel ) ) {
+        if (is_null($this->autoloader) || is_null($this->directoryLevel)) {
             return false;
         }
 
