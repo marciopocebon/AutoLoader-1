@@ -5,10 +5,11 @@ define('AUTOLOADER_PHP_FILES_JSON', 'autoloader.json');
 class autoloader
 {
 
+    static $instance = false;
+
     public static function instance()
     {
-        static $instance = false;
-        if ($instance === false) {
+        if (self::$instance === false) {
             $instance = new self();
         }
 
@@ -178,6 +179,7 @@ class autoloader
  */
 class spl_registrar
 {
+
     /**
      * @var autoloader
      */
