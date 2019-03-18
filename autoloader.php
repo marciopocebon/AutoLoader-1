@@ -40,7 +40,7 @@ class autoloader
     {
 
         //save update time in array
-        $filePaths = array(mktime());
+        $filePaths = array(time());
 
         /**Get all files and directories using recursive iterator.*/
         $iterator = new RecursiveIteratorIterator(
@@ -131,7 +131,7 @@ class autoloader
 
                 //Only in developing mode loader checks for @param $files_refresh_time seconds to renew files or not.
                 $last_update = json_decode(file_get_contents($php_files_json_directory), false)[0];
-                if ((mktime() - intval($last_update)) < $files_refresh_time) {
+                if ((time() - intval($last_update)) < $files_refresh_time) {
                     return $this->include_matching_files($dir_level, $php_files_json_directory, $class_file_name);
                 }
 
