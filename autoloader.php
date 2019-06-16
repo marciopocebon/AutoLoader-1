@@ -72,9 +72,9 @@ class autoloader
     private function write_config($dir_level, $file_paths)
     {
 
-        sort($file_paths, SORT_STRING);
+        natcasesort($file_paths);
 
-        $fs = fopen( $dir_level . DIRECTORY_SEPARATOR . AUTOLOAD_CONFIG_PHP, "w" );
+        $fs = fopen($dir_level . DIRECTORY_SEPARATOR . AUTOLOAD_CONFIG_PHP, "w");
         if (!is_resource($fs)) {
             return false;
         }
@@ -90,10 +90,10 @@ class autoloader_config_' . md5($dir_level) . '
     public static function get_files()
     {
         //sorted files in this directory level
-        return [
+        return array(
              ' . time() . ',
             "' . implode('",' . PHP_EOL . '            "', $file_paths) . '"
-        ];
+        );
     }
 
     public static function in_files($file_name)
@@ -177,7 +177,7 @@ class autoloader_config_' . md5($dir_level) . '
 
         if (!$found && $try_for_new_files) {
             $updated_at = call_user_func('autoloader_config_' . md5($dir_level) . '::get_files')[0];
-            if ((time() - intval($updated_at)) < $files_refresh_time) {
+            if ((time() - intval($updated_at)) > $files_refresh_time) {
                 $this->export_php_files($dir_level, $file_extension);
                 $found = $this->include_matching_files($dir_level, $php_files_config, $class_file_name);
             }
