@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/autoloader_config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoloader.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/autoloader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dummy/rootDummy2.php" beforeDir="false" afterPath="$PROJECT_DIR$/dummy/rootDummy2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-    </list>
+    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/autoloader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+            <state relative-caret-position="364">
+              <caret line="132" column="42" lean-forward="true" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
               <folding>
                 <element signature="n#write_config#0;n#autoloader#0;n#!!top" />
                 <element signature="n#include_matching_files#0;n#autoloader#0;n#!!top" />
@@ -237,7 +229,7 @@
       <workItem from="1550564300576" duration="262000" />
       <workItem from="1550583625682" duration="411000" />
       <workItem from="1552895819353" duration="700000" />
-      <workItem from="1560665475368" duration="20162000" />
+      <workItem from="1560665475368" duration="20349000" />
     </task>
     <task id="LOCAL-00001" summary="Unix psr-4 and directory systems fixed.">
       <created>1545336224501</created>
@@ -337,11 +329,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552895898358</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="new php generator added, &#10;binary search implemented and loader speed increased.">
+      <created>1560686216768</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560686216768</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49017000" />
+    <option name="totallyTimeSpent" value="49204000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -411,7 +410,8 @@
     <MESSAGE value="return added in line 201" />
     <MESSAGE value="file directory saved relatively." />
     <MESSAGE value="deprecated functions replaced ." />
-    <option name="LAST_COMMIT_MESSAGE" value="deprecated functions replaced ." />
+    <MESSAGE value="new php generator added, &#10;binary search implemented and loader speed increased." />
+    <option name="LAST_COMMIT_MESSAGE" value="new php generator added, &#10;binary search implemented and loader speed increased." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/rootDummy2.php" />
@@ -609,8 +609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autoloader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+        <state relative-caret-position="364">
+          <caret line="132" column="42" lean-forward="true" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
           <folding>
             <element signature="n#write_config#0;n#autoloader#0;n#!!top" />
             <element signature="n#include_matching_files#0;n#autoloader#0;n#!!top" />

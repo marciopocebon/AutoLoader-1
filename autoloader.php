@@ -74,7 +74,7 @@ class autoloader
 
         sort($file_paths, SORT_STRING);
 
-        $fs = fopen(AUTOLOAD_CONFIG_PHP, "w+");
+        $fs = fopen( $dir_level . DIRECTORY_SEPARATOR . AUTOLOAD_CONFIG_PHP, "w" );
         if (!is_resource($fs)) {
             return false;
         }
