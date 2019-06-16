@@ -6,6 +6,8 @@
  * Time: 3:43 PM
  */
 
+namespace dummy;
+
 class rootDummy2
 {
 
