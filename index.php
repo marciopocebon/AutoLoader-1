@@ -15,23 +15,23 @@ $start = microtime(true);
 
 
 echo '<br><b>ANIMALS NAMESPACE</b><br><br>';
-new animals\bird();
-new animals\cat();
-new animals\snake();
-new animals\dog();
+new Autoload\animals\bird();
+new Autoload\animals\cat();
+new Autoload\animals\snake();
+new Autoload\animals\dog();
 
 echo '<br><b>CARS NAMESPACE</b><br><br>';
-new cars\bmw();
-new cars\benz();
-new cars\lamborghini();
+new Autoload\cars\bmw();
+new Autoload\cars\benz();
+new Autoload\cars\lamborghini();
 
 echo '<br><b>GERMANY CARS NAMESPACE</b><br><br>';
-new german_cars\benz();
-new german_cars\bmw();
+new Autoload\german_cars\benz();
+new Autoload\german_cars\bmw();
 
 echo '<br><b>WITHOUT NAMESPACE</b><br><br>';
-new rootDummy();
-new dummy\rootDummy2();
+new Autoload\rootDummy();
+new Autoload\dummy\rootDummy2();
 
 $end = microtime(true) - $start;
 

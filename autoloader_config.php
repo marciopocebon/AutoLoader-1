@@ -16,22 +16,22 @@ class autoloader_config_b0cf2f3f5b2940ee88be781cc9f0ae76
     public static function get_files()
     {
         return array(
-             1560879758,
-            "/animals/bird.php",
-            "/animals/cat.php",
-            "/animals/dog.php",
-            "/animals/snake.php",
-            "/autoloader.php",
-            "/cars/benz.php",
-            "/cars/bmw.php",
-            "/cars/lamborghini.php",
-            "/dummy/rootDummy2.php",
-            "/german_cars/benz.php",
-            "/german_cars/bmw.php",
-            "/index.php",
-            "/index_old.php",
-            "/index_old.php",
-            "/rootDummy.php"
+             1560887342,
+            "/Autoload/animals/bird.php",
+            "/Autoload/animals/cat.php",
+            "/Autoload/animals/dog.php",
+            "/Autoload/animals/snake.php",
+            "/Autoload/autoloader.php",
+            "/Autoload/cars/benz.php",
+            "/Autoload/cars/bmw.php",
+            "/Autoload/cars/lamborghini.php",
+            "/Autoload/dummy/rootDummy2.php",
+            "/Autoload/german_cars/benz.php",
+            "/Autoload/german_cars/bmw.php",
+            "/Autoload/index.php",
+            "/Autoload/index_old.php",
+            "/Autoload/index_old.php",
+            "/Autoload/rootDummy.php"
         );
     }
 

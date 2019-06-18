@@ -6,7 +6,7 @@
  * Time: 3:43 PM
  */
 
-namespace cars;
+namespace Autoload\cars;
 
 class bmw
 {

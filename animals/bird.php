@@ -6,7 +6,7 @@
  * Time: 3:43 PM
  */
 
-namespace animals;
+namespace Autoload\animals;
 
 class bird
 {

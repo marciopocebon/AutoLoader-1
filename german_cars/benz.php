@@ -6,7 +6,7 @@
  * Time: 3:43 PM
  */
 
-namespace german_cars;
+namespace Autoload\german_cars;
 
 class benz
 {

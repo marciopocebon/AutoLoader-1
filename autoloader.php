@@ -65,7 +65,7 @@ class autoloader
             $path = strval($iterator->current());
 
             if (stripos(pathinfo($path, PATHINFO_BASENAME), $file_extension)) {
-                $file_paths[] = str_replace($dir_level, '', $path);
+                $file_paths[] = str_replace(dirname($dir_level, 1), '', $path);
             }
             //while have next maybe throw an exception.
             try {
@@ -167,7 +167,7 @@ class autoloader_config_' . md5($dir_level) . '
             $result = call_user_func('autoloader_config_' . md5($dir_level) . '::in_files', $class_file_name);
             if ($result) {
                 /** @noinspection PhpIncludeInspection */
-                require_once $dir_level . $result;
+                require_once dirname($dir_level, 1) . $result;
                 $inc_is_done = true;
             }
         }
