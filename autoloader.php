@@ -118,7 +118,7 @@ class autoloader_config_' . md5($dir_level) . '
 
 	/**
 	 * This function searches the required file with binary algorithm
-	 * @param $file_name Search file name
+	 * @param $file_name string search file name
 	 * @return bool|mixed Filename or unsuccessful search result.
 	 * @link https://php.net/manual/en/function.natcasesort.php
 	 * @link https://php.net/manual/en/function.strnatcasecmp.php
