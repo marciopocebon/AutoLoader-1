@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/autoloader.php" afterDir="false" />
-    </list>
+    <list default="true" id="ee986273-aa4f-4aa9-98ac-a0c3076606fe" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/autoloader.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="4" />
+            <state relative-caret-position="306">
+              <caret line="228" lean-forward="true" selection-end-line="316" />
               <folding>
                 <element signature="e#192#261#0#PHP" />
                 <element signature="n#instance#0;n#autoloader#0;n#!!top" />
@@ -277,7 +274,7 @@
       <workItem from="1560665475368" duration="20349000" />
       <workItem from="1560687930637" duration="67000" />
       <workItem from="1560701991327" duration="169000" />
-      <workItem from="1560875688050" duration="3870000" />
+      <workItem from="1560875688050" duration="3892000" />
     </task>
     <task id="LOCAL-00001" summary="Unix psr-4 and directory systems fixed.">
       <created>1545336224501</created>
@@ -398,11 +395,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560702138385</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="sorting fixed , try for new files bug fixed">
+      <created>1560879571791</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1560879571791</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53310000" />
+    <option name="totallyTimeSpent" value="53332000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -627,8 +631,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/autoloader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="4" />
+        <state relative-caret-position="306">
+          <caret line="228" lean-forward="true" selection-end-line="316" />
           <folding>
             <element signature="e#192#261#0#PHP" />
             <element signature="n#instance#0;n#autoloader#0;n#!!top" />
